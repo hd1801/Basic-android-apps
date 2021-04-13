@@ -2,6 +2,8 @@ package com.example.samplemediaplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -22,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         songID=R.raw.song;
         if(a!=null)
-        a.release();
+            a.release();
         a= MediaPlayer.create(this,songID);
         state = (TextView)findViewById(R.id.state_textview);
     }
+
     public void playSong(View view)
     {
         if(a!=null)
-            a.release();
+            a= MediaPlayer.create(this,songID);
         a.start();
         state.setText("Playing");
         a.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -52,9 +55,14 @@ public class MainActivity extends AppCompatActivity {
         a.release();
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
         a.stop();
+        if(a!=null)
+        a.release();
     }
+
+
 }
