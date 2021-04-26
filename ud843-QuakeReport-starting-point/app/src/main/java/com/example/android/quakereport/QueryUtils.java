@@ -38,7 +38,7 @@ public final class QueryUtils {
     public static ArrayList<Quake> extractEarthquakes() {
 
         // Create an empty ArrayList that we can start adding earthquakes to
-        ArrayList<Quake> earthquakes = new ArrayList<Quake>();
+        ArrayList<Quake> earthquakes = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
         // is formatted, a JSONException exception object will be thrown.
@@ -54,7 +54,8 @@ public final class QueryUtils {
               JSONObject quake = features.getJSONObject(i);
               JSONObject properties = quake.getJSONObject("properties");
               Long date = properties.getLong("time");
-              earthquakes.add(new Quake( properties.getString("mag"), properties.getString("place"),date));
+              double magnitude = properties.getDouble("mag");
+              earthquakes.add(new Quake( magnitude, properties.getString("place"),date,properties.getString("url")));
 
           }
 
