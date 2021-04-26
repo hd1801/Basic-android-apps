@@ -3,16 +3,16 @@ package com.example.android.quakereport;
 public class Quake {
 
 
-    String mMagnitude,mLocation,mDate;
+    private String  mMagnitude,mLocation;
+    private Long mTimeInMilliseconds;
 
 
 
-    public Quake(String mMagnitude, String mLocation, String mDate) {
+    public Quake(String mMagnitude, String mLocation, Long mTimeInMilliseconds) {
         this.mMagnitude = mMagnitude;
         this.mLocation = mLocation;
-        this.mDate = mDate;
+        this.mTimeInMilliseconds=mTimeInMilliseconds;
     }
-
 
     public String getmMagnitude() {
         return mMagnitude;
@@ -22,8 +22,8 @@ public class Quake {
         return mLocation;
     }
 
-    public String getmDate() {
-        return mDate;
+    public Long getmTimeInMilliseconds() {
+        return mTimeInMilliseconds;
     }
 
 }
